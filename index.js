@@ -21,28 +21,26 @@ const server = http.createServer((req, res) => {
   }
 
   const query = url.parse(req.url).query;
-  const urlWithQuery = url.parse(req.url).pathname;
+  const urlWithoutQuery = url.parse(req.url).pathname;
   const queryObj = qs.parse(query);
-
 
   console.log('-----');
   console.log(query);
   console.log(queryObj);
-  console.log(urlWithQuery);
+  console.log(urlWithoutQuery);
   console.log('-----');
 
   if (queryObj.download) {
     res.writeHead(200, {
-      'Content-Disposition': `attachment; filename=${urlWithQuery}`
+      'Content-Disposition': `attachment; filename=${urlWithoutQuery}`
     });
-    res.end(tree('./' + urlWithQuery, process.cwd()).fileContent);
+    res.end(tree('./' + urlWithoutQuery, process.cwd()).fileContent);
   } else {
     res.writeHead(200, {
       'Content-Type': 'text/html; charset=utf-8'
     });
-    res.end(template(tree('./' + urlWithQuery, process.cwd())));
+    res.end(template(tree('./' + urlWithoutQuery, process.cwd())));
   }
-
 });
 
 // start server
