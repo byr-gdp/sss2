@@ -1,0 +1,12 @@
+{
+  "name": "sss2",
+  "version": "0.0.1",
+  "description": "a no dependency simple static server",
+  "main": "./index.js",
+  "bin": {
+    "sss2": "index.js"
+  },
+  "scripts": {},
+  "author": "gongdapeng",
+  "license": "MIT"
+}
